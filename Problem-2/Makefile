@@ -10,7 +10,7 @@ EXEC = practica
 $(EXEC): $(SRC_FILES)
 	$(CC) $(CFLAGS) $(C_FILES) -o $(EXEC)
 
-testall: $(EXEC)
+test: $(EXEC)
 	./$(EXEC)
 
 # run valgrind
