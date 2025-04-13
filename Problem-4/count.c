@@ -14,8 +14,5 @@
  #include "count.h"
  #include "unittest.h"
 
- int count_nodes(Node* head) {
-     if (head == NULL) return 0;
-     return 1 + count_nodes(head->next);
- }
+ int count_nodes(Node* head) {}
  

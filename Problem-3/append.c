@@ -16,18 +16,5 @@
  #include "append.h"
  #include "unittest.h"
  
- Node* append(Node* head, const char* key, int value) {
-     if (head == NULL) {
-         Node* new_node = malloc(sizeof(Node));
-         if (new_node == NULL) return NULL;
-         strncpy(new_node->key, key, 99);
-         new_node->key[99] = '\0';
-         new_node->value = value;
-         new_node->next = NULL;
-         return new_node;
-     }
- 
-     head->next = append(head->next, key, value);
-     return head;
- }
+ Node* append(Node* head, const char* key, int value) {}
  

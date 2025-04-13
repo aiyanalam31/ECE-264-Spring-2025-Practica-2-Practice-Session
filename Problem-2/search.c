@@ -16,9 +16,5 @@
  #include <string.h>
  #include "search.h"
  
- bool contains_key(Node* head, const char* target_key) {
-     if (head == NULL) return false;
-     if (strcmp(head->key, target_key) == 0) return true;
-     return contains_key(head->next, target_key);
- }
+ bool contains_key(Node* head, const char* target_key) {}
  
