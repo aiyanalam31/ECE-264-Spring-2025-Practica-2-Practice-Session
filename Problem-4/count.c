@@ -12,6 +12,7 @@
  */
 
  #include "count.h"
+ #include "unittest.h"
 
  int count_nodes(Node* head) {
      if (head == NULL) return 0;

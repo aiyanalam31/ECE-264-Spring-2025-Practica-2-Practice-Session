@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "reverse.h"
+#include "unittest.h"
 
 Node* create_node(const char* key, int value) {
     Node* node = malloc(sizeof(Node));
@@ -12,33 +13,44 @@ Node* create_node(const char* key, int value) {
     return node;
 }
 
-void print_list(Node* head) {
-    while (head != NULL) {
-        printf("%s (%d) -> ", head->key, head->value);
-        head = head->next;
-    }
-    printf("NULL\n");
-}
+int test_reverse_basic() {
+    int errors = 0;
+    Node* a = create_node("A", 1);
+    Node* b = create_node("B", 2);
+    Node* c = create_node("C", 3);
+    a->next = b;
+    b->next = c;
 
-int main() {
-    Node* head = create_node("A", 1);
-    head->next = create_node("B", 2);
-    head->next->next = create_node("C", 3);
+    Node* head = reverse_list(a);
 
-    printf("Original list:\n");
-    print_list(head);
-
-    Node* reversed = reverse_list(head);
-
-    printf("Reversed list:\n");
-    print_list(reversed);
+    errors += check_string("C", head->key);
+    errors += check_integer(3, head->value);
+    errors += check_string("B", head->next->key);
+    errors += check_string("A", head->next->next->key);
+    errors += check_null(head->next->next->next);
 
     // Free memory
-    while (reversed) {
-        Node* temp = reversed;
-        reversed = reversed->next;
+    while (head) {
+        Node* temp = head;
+        head = head->next;
         free(temp);
     }
 
-    return 0;
+    return errors;
+}
+
+int main() {
+    int total_errors = 0;
+
+    printf("-- Starting test_reverse_basic --\n");
+    int errors = test_reverse_basic();
+    if (errors == 0) {
+        printf("✅ Test PASSED\n\n");
+    } else {
+        printf("❌ Test FAILED with %d error(s)\n\n", errors);
+    }
+
+    total_errors += errors;
+
+    return total_errors;
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "search.h"
+#include "unittest.h"
 
 Node* create_node(const char* key, int value) {
     Node* node = malloc(sizeof(Node));
@@ -12,20 +13,37 @@ Node* create_node(const char* key, int value) {
     return node;
 }
 
-int main() {
+int test_search_key() {
+    int errors = 0;
     Node* head = create_node("Bruce", 1);
     head->next = create_node("Clark", 2);
     head->next->next = create_node("Diana", 3);
 
-    printf("Searching for 'Clark': %s\n", contains_key(head, "Clark") ? "FOUND" : "NOT FOUND");
-    printf("Searching for 'Barry': %s\n", contains_key(head, "Barry") ? "FOUND" : "NOT FOUND");
+    errors += check_bool(true, contains_key(head, "Clark"));
+    errors += check_bool(false, contains_key(head, "Barry"));
 
-    // Free memory
+    // Free
     while (head) {
-        Node* temp = head;
+        Node* tmp = head;
         head = head->next;
-        free(temp);
+        free(tmp);
     }
 
-    return 0;
+    return errors;
+}
+
+int main() {
+    int total_errors = 0;
+
+    printf("-- Starting test_search_key --\n");
+    int errors = test_search_key();
+    if (errors == 0) {
+        printf("✅ Test PASSED\n\n");
+    } else {
+        printf("❌ Test FAILED with %d error(s)\n\n", errors);
+    }
+
+    total_errors += errors;
+
+    return total_errors;
 }

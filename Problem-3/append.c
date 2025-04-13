@@ -14,6 +14,7 @@
  #include <stdlib.h>
  #include <string.h>
  #include "append.h"
+ #include "unittest.h"
  
  Node* append(Node* head, const char* key, int value) {
      if (head == NULL) {
