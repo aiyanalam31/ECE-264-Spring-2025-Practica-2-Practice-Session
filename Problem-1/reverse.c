@@ -18,14 +18,4 @@
 #include <string.h>
 #include "reverse.h"
 
-Node* reverse_list(Node* head) {
-    if (head == NULL || head->next == NULL) {
-        return head;
-    }
-
-    Node* new_head = reverse_list(head->next);
-    head->next->next = head;
-    head->next = NULL;
-
-    return new_head;
-}
+Node* reverse_list(Node* head) {}
