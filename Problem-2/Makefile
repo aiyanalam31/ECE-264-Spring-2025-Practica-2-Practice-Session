@@ -3,8 +3,8 @@ CC = gcc
 # compiler flags
 CFLAGS = -std=c11 -g -Wall -Wshadow --pedantic -Wvla -Werror -Wno-strict-prototypes
 # Source files
-C_FILES = reverse.c main.c
-SRC_FILES = $(C_FILES) reverse.h unittest.h
+C_FILES = search.c main.c
+SRC_FILES = $(C_FILES) search.h unittest.h
 EXEC = practica
 
 $(EXEC): $(SRC_FILES)
