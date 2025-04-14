@@ -21,4 +21,12 @@ static inline int check_integer(int expected, int actual) {
     return 0;
 }
 
+static inline int check_null(const void* actual) {
+    if (actual != NULL) {
+        printf("FAILED: %p should be NULL\n", actual);
+        return 1;
+    }
+    return 0;
+}
+
 #endif

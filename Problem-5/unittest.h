@@ -6,7 +6,7 @@
 
 static inline int check_string(const char* expected, const char* actual) {
     if (strcmp(expected, actual) != 0) {
-        printf("FAILED: expected "%s", got "%s"\n", expected, actual);
+        printf("FAILED: expected %s, got %s\n", expected, actual);
         return 1;
     }
     return 0;

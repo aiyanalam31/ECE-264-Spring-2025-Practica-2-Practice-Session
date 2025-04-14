@@ -18,4 +18,18 @@
 #include <string.h>
 #include "reverse.h"
 
-Node* reverse_list(Node* head) {}
+Node* reverse_list(Node* head) {
+    // Base case: if the list is empty or has only one node, return it as is
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    // Recursive case: reverse the rest of the list
+    Node* new_head = reverse_list(head->next);
+
+    // Link the current node to the end of the reversed list
+    head->next->next = head;
+    head->next = NULL;
+
+    return new_head;
+}

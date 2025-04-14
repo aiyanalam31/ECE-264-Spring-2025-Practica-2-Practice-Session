@@ -16,5 +16,18 @@
  #include <string.h>
  #include "search.h"
  
- bool contains_key(Node* head, const char* target_key) {}
+ bool contains_key(Node* head, const char* target_key) {
+    // Base case: if the list is empty, return false
+    if (head == NULL) {
+        return false; // Base case: reached the end of the list
+    }
+
+    // Check if the current node's key matches the target key
+    if (strcmp(head->key, target_key) == 0) {
+        return true; // Key found
+    }
+
+    // Recursively check the next node
+    return contains_key(head->next, target_key);
+ }
  
